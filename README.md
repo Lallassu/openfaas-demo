@@ -1,9 +1,9 @@
 # FaaS Demo - Using OpenFaaS / MySQL / Ceph
-This is an engish version of the original blog-post at: https://www.cygate.se/blogg/faas-function-service-med-openfaas-mysql-ceph/
+This is an engish version of the original blog post https://www.cygate.se/blogg/faas-function-service-med-openfaas-mysql-ceph/
 
 ## Introduction
-The new hot thing is FaaS, Function as a Service. Simply put, it is a way of executing functions in the cloud without your own webserver.
-There are many benefits of this but one clear benefit is that you just have to pay for CPU-time used compared to pay for resources that you
+Function as a Service is simply put a way of executing functions in the cloud without your own webserver.
+There are many benefits of this, but one clear benefit is that you just have to pay for CPU-time used compared to pay for resources that you
 might not use. Usually you have a webserver with pretty high margins resource wise, in order to handle sudden load. That extra margin is 
 of course something you have to pay for. But using FaaS you just have to pay for the resource usage it takes to execute your functions.
 
@@ -12,7 +12,7 @@ function could be seen as a small micro-service that handles its specific task.
 
 ## Test of FaaS
 To dig deeper into the subject I've setup a guide/demo to test FaaS. The guide will take use of OpenFaaS, Docker Swarm, MySQL and Ceph. Nginx
-will also be used but just as a workaround to handle CORS (Cross-Origin Resource Sharing) in order to be able to reach objects outside of the
+will also be used, but just as a workaround to handle CORS (Cross-Origin Resource Sharing) in order to be able to reach objects outside of the
 same domain. The guide will create a simple webpage that will be stored on a object-storage (in this case Ceph) using the Amazon S3 protocol.
 MySQL will be used as a local database but could be any type of databas such as DBaaS (Database as a Service).
 Docker Swarm will be used to setup the OpenFaaS stack on. Only one worker node will be used in this demo.
@@ -38,7 +38,7 @@ Clone the OpenFaaS repository in order to deploy OpenFaaS services onto our Swar
     ./deploy_stack.sh
 
 The stack is setup automatically using the above script and all containers can be seen using ''docker ps''.
-[!img dockerps.png]
+![](dockerps.png)
 
 ## Step 3
 We are going to save data to a MySQL database so we need a database and a table. We call the database ''faas'' and the table ''users''.
@@ -113,7 +113,7 @@ Then we can deploy the functions:
 
 ## Step 9
 Time to test our functions, using curl.
-[!img](deploy_and_test.png)
+![](deploy_and_test.png)
 
 ## Step 10
 Let's create a simple webpage that takes use of our functions. We create a simple HTML page with some Javascript that issues AJAX requests
@@ -134,7 +134,7 @@ in order to be able to access the file without logging in.
 
 For my Ceph setup I will reach my file using the link http://ceph.magstar.cygate.io:7480/cexhbeao:faas/index.html. This will
 of course be different in your case. The result looks like the below screenshot:
-[!img](site.png)
+![](site.png)
 
 On the page we can now add, delete and list users dynamically.
 
@@ -151,8 +151,8 @@ done using FaaS, for example heavy duty functions such as movie-conversion or im
 these high demanding functions will be offloaded to a FaaS provider!
 
 ## Links
-https://github.com/openfaas/faas
-https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-
+* https://github.com/openfaas/faas
+* https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+* https://www.cygate.se/blogg/faas-function-service-med-openfaas-mysql-ceph/
 
 
