@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>FaaS Demo</title>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    </head>
+    <body>
+    <script>
+    $(document).ready(function() {
+        ListUsers();
+    });
+    function AddUser() {
+        $.ajax({
+               type: "POST",
+               url: "http://yourhost.com:3000/function/new_user",
+               data: $("#username").val(),
+               success: function(data) {
+                   ListUsers();
+               },
+        });
+    }
+    function DeleteUser(username) {
+        $.ajax({
+               type: "POST",
+               url: "http://yourhost.com:3000/function/delete_user",
+               data: username,
+               success: function(data) {
+                   ListUsers();
+               }
+        });
+    }
+    function ListUsers() {
+        $.ajax({
+               type: "POST",
+               url: "http://yourhost.com:3000/function/list_users",
+               data: "",
+               success: function(data) {
+                   var users = "";
+                   data = data.split("\n");
+                   for(var i = 0; i < data.length - 1; i+=2) {
+                       users += "<tr><td>"+data[i]+"</td><td>"+data[i+1]+"</td><td><a href='javascript:DeleteUser(\""+data[i]+"\");'>Delete</a></td></tr>";
+                   }
+                   $("#users").html(users);
+               }
+        });
+    }
+    </script>
+
+    <input id="username" type="text" placeholder="user to add..."></input>
+    <button onclick="javascript:AddUser();">Add User</button>
+
+    <h3>Users:</h3>
+    <table id="users">
+        
+    </table>
+    </body>
+</html>

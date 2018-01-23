@@ -1,0 +1,24 @@
+provider:
+  name: faas
+  gateway: http://localhost:8080
+
+functions:
+  new_user:
+      lang: ruby
+      handler: ./new_user
+      image: demo1
+      environment_file:
+          - env.yml
+  delete_user:
+      lang: ruby
+      handler: ./delete_user
+      image: demo2
+      environment_file:
+          - env.yml
+  list_users:
+      lang: ruby
+      handler: ./list_users
+      image: demo3
+      environment_file:
+          - env.yml
+
